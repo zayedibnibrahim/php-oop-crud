@@ -1,11 +1,9 @@
 <?php
-
 require_once 'config/config.php';
 require_once 'classes/User.php';
 
 $errors = [];
 $name = $email = $phone = $address = '';
-
 if (isset($_POST['register'])) {
     // 1. Collect data
     $name    = trim($_POST['name']);

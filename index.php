@@ -16,6 +16,8 @@
         <input type="file" name="photo" accept="image/*" required />
         <button type="submit" name="register">Register</button>
     </form>
+    <button class="btn btn-info" onclick="window.location.href='view.php'">View All</button>
 </div>
 </body>
 </html>
+

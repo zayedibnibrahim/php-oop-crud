@@ -76,6 +76,7 @@ $users = $user->getAllUsers(); // We'll add this method in User class
         <?php endif; ?>
         </tbody>
     </table>
+    <button class="btn btn-info" onclick="window.location.href='index.php'">Create New</button>
 </div>
 </body>
 </html>
