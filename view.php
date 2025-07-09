@@ -2,6 +2,8 @@
 require_once 'config/config.php';
 require_once 'classes/User.php';
 
+
+
 $user = new User();
 $users = $user->getAllUsers(); // We'll add this method in User class
 
@@ -34,6 +36,10 @@ $users = $user->getAllUsers(); // We'll add this method in User class
     </style>
 </head>
 <body>
+<?php if (isset($_GET['status']) && $_GET['status'] == 'deleted'): ?>
+    <p style="color: red;">User deleted successfully.</p>
+<?php endif; ?>
+
 <div class="container">
     <h2>Registered Users</h2>
     <table>
@@ -61,7 +67,7 @@ $users = $user->getAllUsers(); // We'll add this method in User class
                     <td>
                         <!-- Placeholder buttons for future Update/Delete -->
                         <a href="edit.php?id=<?= $u['id'] ?>">Edit</a>
-                        <a href="#">Delete</a>
+                        <a href="delete.php?id=<?= $u['id'] ?>" onclick="return confirm('Are you sure?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

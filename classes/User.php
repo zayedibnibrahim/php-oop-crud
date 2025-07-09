@@ -39,5 +39,23 @@ class User extends Database {
         }
     }
 
+    public function deleteUser($id) {
+        // Get user photo path before deleting
+        $stmt = $this->pdo->prepare("SELECT photo FROM users WHERE id = ?");
+        $stmt->execute([$id]);
+        $user = $stmt->fetch();
+
+        // Delete user record
+        $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = ?");
+        $deleted = $stmt->execute([$id]);
+
+        // Delete uploaded photo if it exists
+        if ($deleted && $user && file_exists($user['photo'])) {
+            unlink($user['photo']);
+        }
+
+        return $deleted;
+}
+
 
 }
