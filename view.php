@@ -4,6 +4,7 @@ require_once 'classes/User.php';
 
 $user = new User();
 $users = $user->getAllUsers(); // We'll add this method in User class
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +60,7 @@ $users = $user->getAllUsers(); // We'll add this method in User class
                     <td><?= htmlspecialchars($u['address']) ?></td>
                     <td>
                         <!-- Placeholder buttons for future Update/Delete -->
-                        <a href="#">Edit</a> | 
+                        <a href="edit.php?id=<?= $u['id'] ?>">Edit</a>
                         <a href="#">Delete</a>
                     </td>
                 </tr>

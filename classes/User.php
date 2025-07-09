@@ -18,9 +18,26 @@ class User extends Database {
     }
 
     public function getAllUsers() {
-    $sql = "SELECT * FROM users ORDER BY id DESC";
-    $stmt = $this->pdo->query($sql);
-    return $stmt->fetchAll();
-}
+        $sql = "SELECT * FROM users ORDER BY id DESC";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll();
+    }
+
+    public function getUserById($id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+
+    public function updateUser($id, $name, $email, $phone, $address, $photo = null) {
+        if ($photo) {
+            $stmt = $this->pdo->prepare("UPDATE users SET name=?, email=?, phone=?, address=?, photo=? WHERE id=?");
+            return $stmt->execute([$name, $email, $phone, $address, $photo, $id]);
+        } else {
+            $stmt = $this->pdo->prepare("UPDATE users SET name=?, email=?, phone=?, address=? WHERE id=?");
+            return $stmt->execute([$name, $email, $phone, $address, $id]);
+        }
+    }
+
 
 }
